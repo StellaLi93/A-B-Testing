@@ -4,3 +4,5 @@ Uses of A/A tests:
 1. Compare results to what you expect (sanity check)
 2. Estimate variance and calculate confidence
 3. Direct estimate confidence interval
+
+Bootstrapping (any test or metric that relies on random sampling with replacement)
