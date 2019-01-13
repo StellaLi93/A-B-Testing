@@ -1,0 +1,15 @@
+Overview；what can it be used for?
+Ethics: heard about facebook?
+Choosing and charactorizing metrics: this is important!
+Design experiment: also important for interview!
+Analyzing result: important too!
+Project:something to add to your resume if you are still in school.
+
+Part 3: Choosing and Characterizing Metrics
+Caclulating variability empirically
+Uses of A/A tests:
+1. Compare results to what you expect (sanity check)
+2. Estimate variance and calculate confidence
+3. Direct estimate confidence interval
+
+Bootstrapping (any test or metric that relies on random sampling with replacement)
