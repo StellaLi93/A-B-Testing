@@ -38,3 +38,33 @@ A/B试验简介：A/B测试是什么，可以应用于什么场合
 对评估度量进行效应量检查，也就是根据置信区间来判断是否具有统计和实际显著性（单个评估指标）
 对评估度量进行符号检验（单个评估指标）
 Bonferroni校正（多个评估指标）
+
+Invariant metrics
+a) Number of cookies: Number of unique cookies to view the course overview page.
+Cookie 的数量：即查看课程概述页面的唯一 cookie 的数量
+b) Number of clicks: Number of unique cookies to click the "Start free trial" button (which happens before the free trial screener is trigger).
+点击次数：即点击“开始免费试用”按钮（在免费试用屏幕触犯前发生）的唯一 cookie 的数量
+c) Click-through-probability: Number of unique cookies to click the "Start free trial" button divided by number of unique cookies to view the course overview page.
+点击概率：即点击“开始免费试用”按钮的唯一 cookie 除以查看课程概述页面的唯一 cookie 的数量所得的结果。
+
+Evaluation metrics
+a) Gross conversion: Number of user-ids to complete checkout and enroll in the free trial divided by number of unique cookies to click the "Start free trial" button.
+总转化率：即完成登录并报名参加免费试用的用户 id 的数量除以点击“开始免费试用”按钮的唯一 cookie 的数量所得的结果。
+b) Retention: Number of user-ids to remain enrolled past the 14-day boundary (and thus make at least one payment) divided by number of user-ids to complete checkout.
+留存率：即在 14 天期限后仍保持参加（并进行了至少一次支付）的用户 id 的数量除以完成登录的用户 id 的数量。
+c) Net conversion: Number of user-ids to remain enrolled past the 14-day boundary (and thus make at least one payment) divided by the number of unique cookies to click the "Start free trial" button.
+净转化率：即在 14 天期限结束后仍然参加（并至少进行了一次支付）的用户 id 的数量除以点击“开始免费试用”按钮的唯一 cookie 的数量所得的结果。
+
+Reasons behind metric selection
+
+Number of cookies will be a good population sizing invariant because it is randomly assigned between control and experiment group.
+Number of cookies, Number of clicks, and Click-through-probability are measured before free trial screener is triggered, so will be invariant.
+Gross conversion, Retention and Net conversion can be used as an evaluation metric because the numerator of the metric happens after free trial screener is triggered.
+These are the metric that Udacity is trying to track in this experiment. By adding free trial screener after Start Free Trial button, the experiment could affect the number of user-ids to complete checkout.
+Number of user-id is the number of users who enroll in the free trial. It cannot be used as an invariant metric or evaluation metric. User-ids are only tracked only after a student enrolls in the free trial and will not be equally distributed between the control and experimental groups. Hence it cannot be used as an invariant metric. It is essentially number of enrollments and is a raw count. We cannot adjust raw count to differences in group sizes and we are already using Gross conversion to measure the impact on enrollments that can normalize. Gross conversion is more robust than number of user IDs since it is normalized to the unit of diversion. So I opted not to use Number of user-id as evaluation metric either.
+Results to look for in order to launch the experiment 
+Our experimental goals are (1) to reduce enrollments by unprepared students (2) without significantly reducing the number of students who complete the free trial and make at least one payment.
+
+Goal 1 can be achieved by a decrease in Gross conversion. Since the workload expectations have been set upfront, we expect the number of students completing the checkout to go down and the Gross conversion to decrease.
+Goal 2 can be achieved by an increase or no change in Retention and Net conversion.
+
